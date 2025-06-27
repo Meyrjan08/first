@@ -7,10 +7,15 @@ from telegram.ext import (
     ApplicationBuilder, CommandHandler, ContextTypes,
     MessageHandler, filters, CallbackQueryHandler
 )
+from dotenv import load_dotenv
+import os
+
+# Загрузка переменных окружения
+load_dotenv()
 
 # === Настройки ===
-TOKEN = '7886087086:AAG3Fufm6BhttLhtvxMXZKdwlX1jYbdyw2o'
-SUPER_ADMIN_ID = 7089764340
+TOKEN = os.getenv("TOKEN")
+SUPER_ADMIN_ID = int(os.getenv("SUPER_ADMIN_ID"))
 
 # === Логгирование ===
 logging.basicConfig(level=logging.INFO)
@@ -99,7 +104,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         admin_reply_targets[SUPER_ADMIN_ID] = target_user_id
 
         user_info = user_sessions.get(target_user_id, {})
-        user_name = user_info.get("name", f"User#{target_user_id}")
+        user_name = user_info.get("nametel", f"User#{target_user_id}")
 
         await query.message.reply_text(
             f"✏️ Напишите сообщение для {user_name}, и я отправлю его."
