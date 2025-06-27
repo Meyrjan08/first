@@ -1,1 +1,3 @@
 python-telegram-bot>=20.7 python-dotenv
+git add requirements.txt
+git commit -m "Pin dependencies for Scalingo compatibility"
